@@ -1,6 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv')
-const {Pool} = require('pg')
+const bcrypt = require('bcrypt');
+const { Pool } = require('pg')
 const app = express()
 const cors = require('cors')
 const port = 5000
@@ -23,6 +24,10 @@ app.get('/' , (req , res) =>{
     res.sendFile( __dirname + '/views/index.html')
 })
 
+app.get('/dashboard' , (req , res) =>{
+    res.sendFile(__dirname + '/views/Dashboard.html')
+})
+
 app.get('/user/register' , async(req , res) =>{
     const UserResult = await pool.query('Select * FROM users;')
     res.json(UserResult.rows)
@@ -31,13 +36,14 @@ app.get('/user/register' , async(req , res) =>{
 app.post('/user/register' , async(req , res) =>{
     const { username } = req.body
     const { password } = req.body
+    const hashedPassword = await bcrypt.hash(password, 10)
 
     if(!username || !password){
         return res.json({error : 'Empty Body'})
     }
 
     try{
-        const userRegisteration = await pool.query('INSERT INTO users (username, password) values ($1, $2);', [username, password])
+        const userRegisteration = await pool.query('INSERT INTO users (username, password) values ($1, $2);', [username, hashedPassword])
         res.json(userRegisteration.rows)
     }
     catch(error){
@@ -50,12 +56,26 @@ app.post('/user/login', async(req, res) =>{
     const { password } = req.body
 
     if(!username || !password){
-        return res.json({error : 'User Not Found'})
+        return res.status(401).json({ error: 'Invalid credentials' });
     }
 
     try{
-        const userResult = await pool.query('SELECT username, password FROM users WHERE username = $1 AND password = $2;', [username , password])
-        res.json(userResult.rows)
+        const userResult = await pool.query('SELECT username, password FROM users WHERE username = $1', [username])
+
+        if (userResult.rowCount === 1) {
+            const hashedPasswordFromDB = userResult.rows[0].password;
+            const passwordMatch = await bcrypt.compare(password, hashedPasswordFromDB);
+
+            if(passwordMatch) {
+                res.json({ success: true });
+            }
+            else {
+                res.status(401).json({ error: 'Invalid credentials' });
+            }
+           
+        } else {
+            res.status(401).json({ error: 'Invalid credentials' });
+        }
     }
     catch(error){
         console.error(error)

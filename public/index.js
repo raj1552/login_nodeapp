@@ -1,6 +1,6 @@
-const loginForm = document.getElementById("user-form");
+const registerForm = document.getElementById("user-form");
 
-loginForm.addEventListener("submit", async (e) => {
+registerForm.addEventListener("submit", async (e) => {
     e.preventDefault()
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
@@ -10,7 +10,7 @@ loginForm.addEventListener("submit", async (e) => {
     }
     
     try{
-        const response = await fetch('/user/login', {
+        const response = await fetch('/user/register', {
             method : 'POST',
             headers : {
                 "Content-Type" : "application/json"
@@ -22,15 +22,18 @@ loginForm.addEventListener("submit", async (e) => {
         })
         
         if(response.ok){
-            alert("Sucessfully Logged In")
-            loginForm.reset()
+            alert("Sucessfully Registered")
+            registerForm.reset()
         }
         else{
             console.log(response.statusText)
+            registerForm.reset()
         }
     }
     catch(error){
-        console.error(error)
+        registerForm.reset()
+        document.getElementById('some-text').innerHTML= 'Username Already Taken'
+        console.error(error) 
     }
 });
 
@@ -59,14 +62,21 @@ userLogin.addEventListener('submit', async(e) =>{
         })
 
         if(response.ok){
-            alert("Sucessfully Logged In")
+            window.location.href = '/dashboard'
             userLogin.reset()
         }
         else{
-            console.log(response.statusText)
+            console.log('Login failed:', response.statusText);
+            userLogin.reset()
+            if (response.status === 401) {
+                alert("Invalid username or password");
+            } else {
+                console.log(response.statusText);
+            }
         }
     }
     catch(error){
         console.log(error)
+        alert("An error occurred. Please try again.");
     }
 })
