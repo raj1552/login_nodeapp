@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const userRoutes = require('./src/router/userRoutes')
+const pool = require('./db/config.js')
 
 const app = express()
 const port = 5000
