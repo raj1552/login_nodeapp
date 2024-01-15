@@ -4,6 +4,7 @@ import query from "../query/CreateUser.js"
 import userQuery from "../query/GetUserByUsernameQuery.js";
 import jwt from 'jsonwebtoken'
 
+
 const registerUser = async (req, res) => {
     try {
         const { username, password } = req.body;
@@ -28,7 +29,7 @@ const loginUser = async (req, res) => {
           return res.status(401).json({ error: "Invalid credentials" });
         }
         const { rows }= await pool.query(userQuery.getUserByUsername, [ username]);
-        var token = jwt.sign({username : username}, '12345')
+        const token = jwt.sign({user: username}, '12345')
         console.log(token)
     
         if (rows.length === 0) {
@@ -44,7 +45,8 @@ const loginUser = async (req, res) => {
           }
     
           req.authenticatedUser = username;
-          res.cookie("token",token)
+          res.cookie("authcookie",token)
+          console.log("cookieset:", token)
           res.status(200).json({ sucess : true , body : {token}})
           
       } catch (error) {

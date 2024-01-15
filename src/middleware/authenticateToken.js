@@ -1,19 +1,18 @@
 import jwt from 'jsonwebtoken'
 
 const authenticateToken= async (req, res, next) => {
-    const token = req.cookies.token;
+    const { authcookie } = req.cookies;
 
-    if(!token){
+    if(!authcookie){
         return res.status(401).json({ error: 'Unauthorized' });
     }
-
-    jwt.verify(token, '12345', (err, user) =>{
-        if(err){
-            return res.status(403).json({ error: 'Forbidden' });
-        }
-        req.authenticateUser = user.username;
+    try {
+        const decoded = jwt.verify(authcookie, '12345');
+        req.user = decoded.user;
         next();
-    })
+    } catch (err) {
+        return res.status(403).json({ error: 'Forbidden' });
+    }
 };
 
 export default authenticateToken;
