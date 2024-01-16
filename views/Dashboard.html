@@ -8,10 +8,10 @@
   </head>
   <style>
     .dashboard {
-      position: absolute;
+      position: fixed;
       display: flex;
       width: 240px;
-      height: 1024px;
+      height: 860px;
       padding: 30px;
       flex-direction: column;
       align-items: flex-start;
@@ -49,7 +49,7 @@
       gap: 16px;
       padding: 12px 16px;
       cursor: pointer;
-      width: 240px;
+      width: 220px;
     }
     .workout {
       display: flex;
@@ -58,7 +58,6 @@
       gap: 16px;
       padding: 12px 16px;
       cursor: pointer;
-      width: 240px;
     }
     .dietplan {
       display: flex;
@@ -66,7 +65,6 @@
       align-items: center;
       gap: 16px;
       padding: 12px 16px;
-      width: 240px;
       cursor: pointer;
     }
     .goals {
@@ -76,7 +74,6 @@
       gap: 16px;
       padding: 12px 16px;
       cursor: pointer;
-      width: 240px;
     }
     .myschedule {
       display: flex;
@@ -85,7 +82,6 @@
       gap: 16px;
       padding: 12px 16px;
       cursor: pointer;
-      width: 240px;
     }
     .progess {
       display: flex;
@@ -94,7 +90,6 @@
       gap: 16px;
       padding: 12px 16px;
       cursor: pointer;
-      width: 240px;
     }
     .overview:hover,
     .workout:hover,
@@ -102,18 +97,23 @@
     .goals:hover,
     .myschedule:hover,
     .progess:hover,
-    #logoutform:hover {
+    #logoutform:hover,
+    #logoutform input:hover {
+      background-color: #f97316;
       box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      border-radius: 20px;
+      color: white;
     }
 
     .navbar {
       display: flex;
       flex-direction: row;
       align-items: center;
-      justify-content: center;
       background: #fff;
       box-shadow: 0px 5px 22px 4px rgba(0, 0, 0, 0.02),
         0px 12px 17px 2px rgba(0, 0, 0, 0.03);
+      margin-left: 305px;
+      padding: 0px 20px 0px 20px;
     }
     .nav-container {
       display: flex;
@@ -121,11 +121,11 @@
       align-items: center;
       gap: 300px;
     }
-    .frame{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 16px;
+    .frame {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
     }
     #logoutform {
       display: flex;
@@ -140,12 +140,97 @@
       background-color: white;
       font-size: 18px;
     }
-    .chart {
+    .exercise-chart-resources {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-left: 320px;
+      height: 60vh;
+      gap: 100px;
+    }
+
+    .search-bar {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+    }
+    .search-bar input {
+      width: 270px;
+      height: 30px;
+      border: 1px solid black;
+      border-radius: 20px;
+    }
+    .exercise-resources {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .workout-container {
+      width: 251.667px;
+      height: 168px;
+      border-radius: 8px;
+      background: var(--Cyan-500, #06b6d4);
+      position: relative;
+    }
+    .calories-container {
+      background: var(--Orange-500, #f97316);
+      width: 251.667px;
+      height: 168px;
+      border-radius: 8px;
+      position: relative;
+    }
+    .workout-svg {
+      position: absolute;
+      top: 46px;
+    }
+    .workout-elements {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+    }
+    .workout-icon {
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: center;
-      height: 40vh;
+      width: 45px;
+      height: 45px;
+      border-radius: 4px;
+      background: var(--Cyan-600, #0891b2);
+    }
+    .calories-icon {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      border-radius: 4px;
+      background: var(--Orange-600, #ea580c);
+    }
+    .exercise-tracker-form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 20px;
+      height: 70vh;
+      margin-left: 305px;
+    }
+    .exercise-tracker-form form{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      border: 1px solid black;
+      padding: 15px 20px 15px 20px;
+    }
+    .my-schedule{
+      display: flex;
+      flex-direction: column;
     }
   </style>
   <body>
@@ -345,6 +430,7 @@
               stroke-linejoin="round"
             />
           </svg>
+          <input type="text" />
         </div>
         <div class="frame">
           <svg
@@ -374,8 +460,165 @@
         </div>
       </div>
     </div>
-    <div class="chart">
+    <div class="exercise-chart-resources">
       <canvas id="myChart" style="width: 100%; max-width: 600px"></canvas>
+      <div class="exercise-resources">
+        <div class="workout-container">
+          <div class="workout-elements">
+            <div class="workout-icon">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13.0933 16H18.9067M30 19.3333V12.6667M2 19.3333V12.6667M22.9067 24C26.1067 24 26.9067 22.2 26.9067 20V12C26.9067 9.8 26.1067 8 22.9067 8C19.7067 8 18.9067 9.8 18.9067 12V20C18.9067 22.2 19.7067 24 22.9067 24ZM9.09333 24C5.89333 24 5.09333 22.2 5.09333 20V12C5.09333 9.8 5.89333 8 9.09333 8C12.2933 8 13.0933 9.8 13.0933 12V20C13.0933 22.2 12.2933 24 9.09333 24Z"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <div class="workout-typography">
+              <p>Workout</p>
+              <p></p>
+            </div>
+          </div>
+          <div class="workout-svg">
+            <svg
+              width="252"
+              height="120"
+              viewBox="0 0 252 120"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M0 76.7577L2.78483 74.6939C5.56965 72.6301 11.1393 68.5025 16.709 62.8439C22.2786 57.1853 27.8483 49.9957 33.4179 48.5863C38.9876 47.1768 44.5572 51.5473 50.1269 60.0953C55.6965 68.6432 61.2662 81.3685 66.8358 85.201C72.4055 89.0336 77.9751 83.9735 83.5448 76.5421C89.1144 69.1106 94.6841 59.3079 100.254 52.5434C105.823 45.779 111.393 42.053 116.963 47.0071C122.532 51.9613 128.102 65.5956 133.672 68.7094C139.241 71.8232 144.811 64.4164 150.381 55.2221C155.95 46.0277 161.52 35.0458 167.09 27.5832C172.659 20.1205 178.229 16.1773 183.799 17.7173C189.368 19.2573 194.938 26.2807 200.507 36.6695C206.077 47.0582 211.647 60.8124 217.216 58.4033C222.786 55.9942 228.356 37.4218 233.925 25.3274C239.495 13.233 245.065 7.61649 247.85 4.80824L250.634 2"
+                stroke="#0891B2"
+                stroke-opacity="0.3"
+              />
+              <path
+                d="M2.80391 74.8253L0.00390625 76.8929V120H252.004V2L249.204 4.81332C246.404 7.62664 240.804 13.2533 235.204 25.3696C229.604 37.4859 224.004 56.0918 218.404 58.5053C212.804 60.9187 207.204 47.1397 201.604 36.7322C196.004 26.3246 190.404 19.2885 184.804 17.7457C179.204 16.2029 173.604 20.1533 168.004 27.6294C162.404 35.1055 156.804 46.1073 151.204 55.3183C145.604 64.5293 140.004 71.9494 134.404 68.83C128.804 65.7106 123.204 52.0516 117.604 47.0885C112.004 42.1254 106.404 45.8582 100.804 52.6348C95.2039 59.4115 89.6039 69.2319 84.0039 76.6768C78.4039 84.1217 72.8039 89.191 67.2039 85.3515C61.6039 81.512 56.0039 68.7637 50.4039 60.2003C44.8039 51.6369 39.2039 47.2584 33.6039 48.6705C28.0039 50.0825 22.4039 57.2851 16.8039 62.9539C11.2039 68.6227 5.60391 72.7578 2.80391 74.8253Z"
+                fill="url(#paint0_linear_153_701)"
+                stroke="#0891B2"
+                stroke-opacity="0.3"
+              />
+              <defs>
+                <linearGradient
+                  id="paint0_linear_153_701"
+                  x1="126.004"
+                  y1="2"
+                  x2="126.004"
+                  y2="120"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="white" stop-opacity="0.2" />
+                  <stop offset="1" stop-color="white" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+        </div>
+        <div class="calories-container">
+          <div class="workout-elements">
+            <div class="calories-icon">
+              <svg
+                width="25"
+                height="24"
+                viewBox="0 0 25 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16.8667 10C16.8667 10 16.6667 11 13.6667 15C10.7667 18.8 14.9667 21.6 15.4667 22H15.5667C16.1667 21.5 23.7667 16.7 16.8667 10Z"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M14.4667 7.80001C14.4667 5.50001 13.5667 3.40001 12.6667 2.20001C12.3667 1.90001 11.8667 2.00001 11.7667 2.40001C11.3667 3.90001 10.1667 7.10001 7.26668 10.9C3.56668 15.7 6.96668 20.9 10.4667 21.9C12.3667 22.4 9.96668 20.9 9.66668 17.8C9.36668 13.9 14.4667 11 14.4667 7.80001Z"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <div class="workout-typography">
+              <p>Calories</p>
+              <p></p>
+            </div>
+          </div>
+          <div class="workout-svg">
+            <svg
+              width="253"
+              height="109"
+              viewBox="0 0 253 109"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1.00018 75.5514L3.79259 69.851C6.585 64.1507 12.1698 52.75 17.7546 49.0274C23.3395 45.3049 28.9243 49.2605 34.5091 56.7694C40.0939 64.2784 45.6788 75.3407 51.2636 80.2486C56.8484 85.1565 62.4332 83.91 68.018 77.0725C73.6029 70.2349 79.1877 57.8063 84.7725 57.1439C90.3573 56.4815 95.9421 67.5853 101.527 69.7738C107.112 71.9623 112.697 65.2356 118.281 60.2466C123.866 55.2577 129.451 52.0065 135.036 54.2924C140.621 56.5782 146.206 64.4012 151.79 66.6934C157.375 68.9856 162.96 65.7472 168.545 53.8573C174.13 41.9674 179.714 21.4262 185.299 10.7633C190.884 0.100343 196.469 -0.684242 202.054 2.9845C207.639 6.65324 213.223 14.7753 218.808 14.5021C224.393 14.2289 229.978 5.56039 235.563 3.01834C241.148 0.476296 246.732 4.0607 249.525 5.8529L252.317 7.6451"
+                stroke="#EA580C"
+                stroke-opacity="0.3"
+                stroke-width="0.964286"
+              />
+              <path
+                d="M3.79259 69.851L1.00018 75.5514V109H252.317V7.6451L249.525 5.8529C246.732 4.0607 241.148 0.476296 235.563 3.01834C229.978 5.56039 224.393 14.2289 218.808 14.5021C213.223 14.7753 207.639 6.65324 202.054 2.9845C196.469 -0.684242 190.884 0.100343 185.299 10.7633C179.714 21.4262 174.13 41.9674 168.545 53.8573C162.96 65.7472 157.375 68.9856 151.79 66.6934C146.206 64.4012 140.621 56.5782 135.036 54.2924C129.451 52.0065 123.866 55.2577 118.281 60.2466C112.697 65.2356 107.112 71.9623 101.527 69.7738C95.9421 67.5853 90.3573 56.4815 84.7725 57.1439C79.1877 57.8063 73.6029 70.2349 68.018 77.0725C62.4332 83.91 56.8484 85.1565 51.2636 80.2486C45.6788 75.3407 40.0939 64.2784 34.5091 56.7694C28.9243 49.2605 23.3395 45.3049 17.7546 49.0274C12.1698 52.75 6.585 64.1507 3.79259 69.851Z"
+                fill="url(#paint0_linear_153_716)"
+              />
+              <defs>
+                <linearGradient
+                  id="paint0_linear_153_716"
+                  x1="126.659"
+                  y1="1"
+                  x2="126.659"
+                  y2="109"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stop-color="white" stop-opacity="0.2" />
+                  <stop offset="1" stop-color="white" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="my-schedule">
+        <h1>My Schedule</h1>
+      </div>
+    </div>
+    <div class="exercise-tracker-form">
+      <form id="exercise-form" method="post">
+        <label for="description">Exercise Type</label>
+        <input
+          id="desc"
+          type="text"
+          name="description"
+          placeholder="Exercise Type"
+        />
+        <label for="duration">Duration</label>
+        <input
+          id="dur"
+          type="text"
+          name="duration"
+          placeholder="duration* (mins.)"
+        />
+        <label for="date">Date</label>
+        <input
+          id="date"
+          type="text"
+          name="date"
+          placeholder="date (yyyy-mm-dd)"
+        />
+        <input type="submit" value="Submit" />
+      </form>
     </div>
     <script>
       const xValues = [
