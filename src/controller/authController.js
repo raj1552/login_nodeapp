@@ -14,7 +14,7 @@ const registerUser = async (req, res) => {
         
         const hashedPassword = await bcrypt.hash(password, 10);
         const { rows } = await pool.query(query.getUserByUsernameAndPassword, [ username, hashedPassword,]);
-        res.json({ success: true, body: { user: rows[0] } });
+        res.json({ success: true, body: { user: rows[0]} });
     } catch (error) {
         console.error(error);
         res.status(400).json({ error: "Something went wrong!" });
@@ -43,10 +43,8 @@ const loginUser = async (req, res) => {
             res.status(401).json({ error: "Invalid credentials" });
             return
           }
-    
-          req.authenticatedUser = username;
-          res.cookie("authcookie",token)
-          console.log("cookieset:", token)
+
+          res.cookie("authcookie", token);
           res.status(200).json({ sucess : true , body : {token}})
           
       } catch (error) {
@@ -55,4 +53,21 @@ const loginUser = async (req, res) => {
       }
 };
 
-export default { registerUser, loginUser };
+const logoutUser = async (req, res) => {
+    try {
+      const { authHeader } = req.cookies
+
+      if(!authHeader){
+        return res.status(204).json({ error : 'No Content'})
+      }
+
+      res.clearCookie("authcookie"); 
+      res.status(200).json({ success: true });
+    }
+    catch(error){
+      console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+}
+
+export default { registerUser, loginUser, logoutUser};
