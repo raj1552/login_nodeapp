@@ -590,7 +590,7 @@
           </div>
         </div>
       </div>
-      <div class="my-schedule">
+      <div class="my-schedule" id="my-schedule">
         <h1>My Schedule</h1>
       </div>
     </div>
@@ -620,69 +620,6 @@
         <input type="submit" value="Submit" />
       </form>
     </div>
-    <script>
-      const xValues = [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-      ];
-      const yValues = [55, 49, 44, 24, 30, 35, 18];
-      const barColors = [
-        "red",
-        "green",
-        "blue",
-        "orange",
-        "brown",
-        "orange",
-        "black",
-      ];
-
-      new Chart("myChart", {
-        type: "bar",
-        data: {
-          labels: xValues,
-          datasets: [
-            {
-              backgroundColor: barColors,
-              data: yValues,
-            },
-          ],
-        },
-        options: {
-          legend: { display: false },
-          title: {
-            display: true,
-            text: "Exercise Tracker",
-          },
-        },
-      });
-      const logoutbutton = document.getElementById("logoutform");
-
-      logoutbutton.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        try {
-          const response = await fetch("/user/logout", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            credentials: "include",
-          });
-
-          console.log("response", response);
-          if (response.ok) {
-            window.location.href = "/";
-          } else {
-            console.log("LogOut failed:", response.statusText);
-          }
-        } catch (error) {
-          console.log(error);
-        }
-      });
-    </script>
+    <script src="dashboard.js"></script>
   </body>
 </html>

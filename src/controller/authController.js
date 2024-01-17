@@ -60,8 +60,8 @@ const logoutUser = async (req, res) => {
       if(!authHeader){
         return res.status(204).json({ error : 'No Content'})
       }
-
-      res.clearCookie("authcookie"); 
+      
+      res.clearCookie("authcookie");
       res.status(200).json({ success: true });
     }
     catch(error){
