@@ -4,7 +4,7 @@ const authenticateToken= async (req, res, next) => {
     const { authcookie } = req.cookies;
 
     if(!authcookie){
-        return res.status(401).json({ error: 'Unauthorized' });
+        return res.redirect("/")
     }
     try {
         const jsonToken = jwt.verify(authcookie, '12345');

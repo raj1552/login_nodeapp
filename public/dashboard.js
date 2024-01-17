@@ -62,7 +62,7 @@ logoutbutton.addEventListener("submit", async (e) => {
 });
 
 const exerciseform = document.getElementById("exercise-form");
-const schedule = document.getElementById("my-schedule");
+const schedule = document.getElementById("upcomingevents");
 
 exerciseform.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -87,9 +87,10 @@ exerciseform.addEventListener("submit", async (e) => {
     alert("Sucessfully Added");
     exerciseform.reset();
 
+    const div = document.createElement('div')
     const pTag = document.createElement("p");
     pTag.innerHTML = `${desc}, ${dur}, ${date}`;
-    schedule.appendChild(pTag);
+    schedule.appendChild(div).appendChild(pTag)
   } catch (error) {
     console.error(error);
   }

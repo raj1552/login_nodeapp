@@ -55,9 +55,9 @@ const loginUser = async (req, res) => {
 
 const logoutUser = async (req, res) => {
     try {
-      const { authHeader } = req.cookies
+      const { authcookie } = req.cookies
 
-      if(!authHeader){
+      if(!authcookie){
         return res.status(204).json({ error : 'No Content'})
       }
       

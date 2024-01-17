@@ -22,6 +22,21 @@ app.get('/dashboard', authenticateToken, (req , res) =>{
     res.sendFile( process.cwd()  + '/views/Dashboard.html')
 })
 
+app.get('/workout', authenticateToken, (req , res) =>{
+    res.sendFile( process.cwd()  + '/views/Workout.html')
+})
+
+app.get('/goals', authenticateToken, (req , res) =>{
+    res.sendFile( process.cwd()  + '/views/Goals.html')
+})
+
+app.get('/myschedule', authenticateToken, (req , res) =>{
+    res.sendFile( process.cwd()  + '/views/Schedule.html')
+})
+
+app.get('/myprogess', authenticateToken, (req , res) =>{
+    res.sendFile( process.cwd()  + '/views/Progess.html')
+})
 app.use('/user', userRoutes)
 
 app.listen( port , () =>{
