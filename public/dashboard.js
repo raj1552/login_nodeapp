@@ -50,7 +50,6 @@ logoutbutton.addEventListener("submit", async (e) => {
       credentials: "include",
     });
 
-    console.log("response", response);
     if (response.ok) {
       window.location.href = "/";
     } else {
@@ -86,12 +85,53 @@ exerciseform.addEventListener("submit", async (e) => {
     }
     alert("Sucessfully Added");
     exerciseform.reset();
-
-    const div = document.createElement('div')
-    const pTag = document.createElement("p");
-    pTag.innerHTML = `${desc}, ${dur}, ${date}`;
-    schedule.appendChild(div).appendChild(pTag)
   } catch (error) {
     console.error(error);
   }
 });
+
+function fetchdata() {
+  fetch("/user/upcomingevents", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      displayDataOnFrontend(data);
+    })
+    .catch((error) => {
+      console.error("Error:", error.message);
+    });
+}
+
+function displayDataOnFrontend(data) {
+  const upcomingEventsContainer = document.getElementById("upcomingevents");
+
+  upcomingEventsContainer.innerHTML = "";
+
+  data.forEach((event) => {
+    const eventContainerDiv = document.createElement("div");
+    eventContainerDiv.classList.add("event-container");
+
+    const dayOfWeek = new Date(event.date).toLocaleDateString("en-US", {
+      weekday: "long",
+    });
+    eventContainerDiv.innerHTML = `
+    <p>${dayOfWeek}</p>
+    <p> ${event.description}</p>
+    <p> ${event.duration} minutes</p>
+    `;
+
+    upcomingEventsContainer.appendChild(eventContainerDiv);
+  });
+}
+
+fetchdata();

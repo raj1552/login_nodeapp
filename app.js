@@ -6,7 +6,7 @@ import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 
 const app = express()
-const port = 4000
+const port = 3000
 
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
@@ -36,6 +36,10 @@ app.get('/myschedule', authenticateToken, (req , res) =>{
 
 app.get('/myprogess', authenticateToken, (req , res) =>{
     res.sendFile( process.cwd()  + '/views/Progess.html')
+})
+
+app.get('*', (req, res) =>{
+    res.sendFile( process.cwd()  + '/views/404Error.html')
 })
 app.use('/user', userRoutes)
 

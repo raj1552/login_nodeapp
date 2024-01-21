@@ -1,247 +1,258 @@
-.dashboard {
-    position: fixed;
-    display: flex;
-    width: 240px;
-    height: 860px;
-    padding: 30px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-    justify-content: space-between;
-    border-right: 1px solid var(--Slate-200, #e2e8f0);
-    background: #fff;
-    box-shadow: 0px 5px 22px 4px rgba(0, 0, 0, 0.02),
-      0px 12px 17px 2px rgba(0, 0, 0, 0.03);
-  }
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-    width: 240px;
-  }
-  .container a{
-    list-style: none;
-    text-decoration: none;
-  }
-  .elements a{
-    list-style: none;
-    text-decoration: none;
-    color: black;
-  }
-  .logo {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-    color: var(--Orange-500, #f97316);
-    border-bottom: 1px solid var(--Slate-300, #cbd5e1);
-  }
-  .elements {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  .overview {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-    padding: 12px 16px;
-    cursor: pointer;
-    width: 220px;
-  }
-  .workout {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-    padding: 12px 16px;
-    cursor: pointer;
-  }
-  .dietplan {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-    padding: 12px 16px;
-    cursor: pointer;
-  }
-  .goals {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-    padding: 12px 16px;
-    cursor: pointer;
-  }
-  .myschedule {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-    padding: 12px 16px;
-    cursor: pointer;
-  }
-  .progess {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-    padding: 12px 16px;
-    cursor: pointer;
-  }
-  .overview:hover,
-  .workout:hover,
-  .dietplan:hover,
-  .goals:hover,
-  .myschedule:hover,
-  .progess:hover,
-  #logoutform:hover,
-  #logoutform:hover{
-    background-color: #f97316;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    border-radius: 20px;
-    color: white;
-  }
-
-  .navbar {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background: #fff;
-    box-shadow: 0px 5px 22px 4px rgba(0, 0, 0, 0.02),
-      0px 12px 17px 2px rgba(0, 0, 0, 0.03);
-    margin-left: 305px;
-    padding: 0px 20px 0px 20px;
-  }
-  .nav-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 300px;
-  }
-  .frame {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-  }
-  #logoutform {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-    padding: 10px 20px;
-    width: 230px;
-  }
-  #logoutform input {
-    border: none;
-    background-color: white;
-    font-size: 18px;
-  }
-  .exercise-chart-resources {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-left: 320px;
-    height: 60vh;
-    gap: 100px;
-  }
-
-  .search-bar {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-  }
-  .search-bar input {
-    width: 270px;
-    height: 30px;
-    border: 1px solid black;
-    border-radius: 20px;
-  }
-  .exercise-resources {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-  .workout-container {
-    width: 251.667px;
-    height: 168px;
-    border-radius: 8px;
-    background: var(--Cyan-500, #06b6d4);
-    position: relative;
-  }
-  .calories-container {
-    background: var(--Orange-500, #f97316);
-    width: 251.667px;
-    height: 168px;
-    border-radius: 8px;
-    position: relative;
-  }
-  .workout-svg {
-    position: absolute;
-    top: 46px;
-  }
-  .workout-elements {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-  }
-  .workout-icon {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 45px;
-    height: 45px;
-    border-radius: 4px;
-    background: var(--Cyan-600, #0891b2);
-  }
-  .calories-icon {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 45px;
-    height: 45px;
-    border-radius: 4px;
-    background: var(--Orange-600, #ea580c);
-  }
-  .exercise-tracker-form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 20px;
-    height: 70vh;
-    margin-left: 305px;
-  }
-  .exercise-tracker-form form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    border: 1px solid black;
-    padding: 15px 20px 15px 20px;
-  }
-  .my-schedule{
-    display: flex;
-    flex-direction: column;
-  }
-
-.my-schedule{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+* {
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
 }
-#upcomingevents{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: #ea580c;
-    border-radius: 20px;
+.dashboard {
+  position: fixed;
+  display: flex;
+  width: 240px;
+  height: 860px;
+  padding: 30px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  justify-content: space-between;
+  border-right: 1px solid var(--Slate-200, #e2e8f0);
+  background: #fff;
+  box-shadow: 0px 5px 22px 4px rgba(0, 0, 0, 0.02),
+    0px 12px 17px 2px rgba(0, 0, 0, 0.03);
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 50px;
+  width: 240px;
+}
+.container a {
+  list-style: none;
+  text-decoration: none;
+}
+.elements a {
+  list-style: none;
+  text-decoration: none;
+  color: black;
+}
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  color: var(--Orange-500, #f97316);
+  border-bottom: 1px solid var(--Slate-300, #cbd5e1);
+}
+.elements {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.overview {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  cursor: pointer;
+  width: 220px;
+}
+.workout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  cursor: pointer;
+}
+.dietplan {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  cursor: pointer;
+}
+.goals {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  cursor: pointer;
+}
+.myschedule {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  cursor: pointer;
+}
+.progess {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  cursor: pointer;
+}
+.overview:hover,
+.workout:hover,
+.dietplan:hover,
+.goals:hover,
+.myschedule:hover,
+.progess:hover,
+#logoutform:hover,
+#logoutform:hover input{
+  background-color: #f97316;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 20px;
+  color: white;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #fff;
+  box-shadow: 0px 5px 22px 4px rgba(0, 0, 0, 0.02),
+    0px 12px 17px 2px rgba(0, 0, 0, 0.03);
+  margin-left: 305px;
+  padding: 0px 20px 0px 20px;
+}
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 300px;
+}
+.frame {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+#logoutform {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 20px;
+  width: 230px;
+}
+#logoutform input {
+  border: none;
+  background-color: white;
+  font-size: 18px;
+}
+.exercise-chart-resources {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 320px;
+  gap: 100px;
+  margin-top: 50px;
+}
+
+.search-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+.search-bar input {
+  width: 270px;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+.exercise-resources {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.workout-container {
+  width: 251.667px;
+  height: 168px;
+  border-radius: 8px;
+  background: var(--Cyan-500, #06b6d4);
+  position: relative;
+}
+.calories-container {
+  background: var(--Orange-500, #f97316);
+  width: 251.667px;
+  height: 168px;
+  border-radius: 8px;
+  position: relative;
+}
+.workout-svg {
+  position: absolute;
+  top: 46px;
+}
+.workout-elements {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+}
+.workout-icon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 4px;
+  background: var(--Cyan-600, #0891b2);
+}
+.calories-icon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 4px;
+  background: var(--Orange-600, #ea580c);
+}
+.exercise-tracker-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  margin-left: 305px;
+}
+.exercise-tracker-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid black;
+  padding: 15px 20px 15px 20px;
+}
+.my-schedule {
+  display: flex;
+  flex-direction: column;
+}
+
+.my-schedule {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+#upcomingevents {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+.event-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 15px 20px 15px 20px;
 }
