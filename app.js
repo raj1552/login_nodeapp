@@ -38,10 +38,11 @@ app.get('/myprogess', authenticateToken, (req , res) =>{
     res.sendFile( process.cwd()  + '/views/Progess.html')
 })
 
+app.use('/user', userRoutes)
+
 app.get('*', (req, res) =>{
     res.sendFile( process.cwd()  + '/views/404Error.html')
 })
-app.use('/user', userRoutes)
 
 app.listen( port , () =>{
     console.log(`Iam running on port ${port}`)

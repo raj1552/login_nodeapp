@@ -92,7 +92,7 @@ exerciseform.addEventListener("submit", async (e) => {
 
 function fetchdata() {
   fetch("/user/upcomingevents", {
-    method: "POST",
+    method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
@@ -124,10 +124,19 @@ function displayDataOnFrontend(data) {
     const dayOfWeek = new Date(event.date).toLocaleDateString("en-US", {
       weekday: "long",
     });
+    
+    let exerciseImage = "";
+    if (event.type === "Pushup") {
+      exerciseImage = '<img src="/pushups-svgrepo-com.svg" alt="">';
+    } else if (event.type === "pullup") {
+      exerciseImage = '<img src="pullup_image_url.jpg" alt="Pullup Image">';
+    }
+
     eventContainerDiv.innerHTML = `
-    <p>${dayOfWeek}</p>
-    <p> ${event.description}</p>
-    <p> ${event.duration} minutes</p>
+      <p>${dayOfWeek}</p>
+      <p>${event.description}</p>
+      <p>${event.duration} minutes</p>
+      ${exerciseImage}
     `;
 
     upcomingEventsContainer.appendChild(eventContainerDiv);
@@ -135,3 +144,45 @@ function displayDataOnFrontend(data) {
 }
 
 fetchdata();
+
+const calorieData = document.getElementById('data')
+
+async function displayData(){
+  try{
+    const response = await fetch('/user/caloriesburn', {
+      method : "GET",
+      headers:{
+        "Content-Type": "application/json"
+      }
+    })
+    const data = await response.json()
+    console.log(data)
+    calorieData.innerHTML = data.rows[0].total_calories_burned
+  }
+  catch(error){
+    console.log("Error:", error)
+  }
+}
+
+displayData();
+
+const totalWorkouts = document.getElementById('totalworkouts')
+
+async function displaytotalWorkouts(){
+  try{
+    const response = await fetch('/user/totalworkouts',{
+      method : "GET",
+      headers:{
+        "Content-Type": "application/json"
+      }
+    })
+     const data = await response.json()
+     console.log(data)
+     totalWorkouts.innerHTML = data.rows[0].count
+  }
+  catch(error){
+    console.error("Error:", error)
+  }
+}
+
+displaytotalWorkouts()
