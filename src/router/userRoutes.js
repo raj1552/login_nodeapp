@@ -4,6 +4,7 @@ import exerciseTracker from '../controller/exerciseTracker.js';
 import authenticateToken from '../middleware/authenticateToken.js';
 import upComingEvent from '../controller/upComingEvent.js';
 import Caloriesburn from '../controller/Caloriesburn.js';
+import userData from '../controller/userData.js'
 
 const router = express.Router();
 
@@ -14,5 +15,6 @@ router.post('/logout', userController.logoutUser)
 router.post('/exerciserecord',authenticateToken, exerciseTracker.exerciseRecord)
 router.get('/caloriesburn', authenticateToken , Caloriesburn.getCaloriesBurned)
 router.get('/totalworkouts', authenticateToken, Caloriesburn.totalWorkouts)
+router.get('/userdata', authenticateToken, userData.userData)
 
 export default router;

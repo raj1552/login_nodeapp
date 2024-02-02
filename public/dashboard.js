@@ -90,7 +90,7 @@ exerciseform.addEventListener("submit", async (e) => {
   }
 });
 
-function fetchdata() {
+/*function fetchdata() {
   fetch("/user/upcomingevents", {
     method: "GET",
     headers: {
@@ -105,14 +105,15 @@ function fetchdata() {
       return response.json();
     })
     .then((data) => {
+      console.log(data)
       displayDataOnFrontend(data);
     })
     .catch((error) => {
       console.error("Error:", error.message);
     });
-}
+}*/
 
-function displayDataOnFrontend(data) {
+/*function displayDataOnFrontend(data) {
   const upcomingEventsContainer = document.getElementById("upcomingevents");
 
   upcomingEventsContainer.innerHTML = "";
@@ -124,26 +125,18 @@ function displayDataOnFrontend(data) {
     const dayOfWeek = new Date(event.date).toLocaleDateString("en-US", {
       weekday: "long",
     });
-    
-    let exerciseImage = "";
-    if (event.type === "Pushup") {
-      exerciseImage = '<img src="/pushups-svgrepo-com.svg" alt="">';
-    } else if (event.type === "pullup") {
-      exerciseImage = '<img src="pullup_image_url.jpg" alt="Pullup Image">';
-    }
 
     eventContainerDiv.innerHTML = `
       <p>${dayOfWeek}</p>
       <p>${event.description}</p>
       <p>${event.duration} minutes</p>
-      ${exerciseImage}
     `;
 
     upcomingEventsContainer.appendChild(eventContainerDiv);
   });
 }
 
-fetchdata();
+fetchdata();*/
 
 const calorieData = document.getElementById('data')
 
@@ -186,3 +179,36 @@ async function displaytotalWorkouts(){
 }
 
 displaytotalWorkouts()
+
+const tabledata = document.getElementById('table-fill')
+
+async function myschedule(){
+  try{
+    const response = await fetch('/user/upcomingevents',{
+      method : 'GET',
+      headers : {
+        "Content-Type" : "application/json"
+      }
+    })
+    const data = await response.json()
+    let tableHTML = ''
+    data.forEach(element => {
+      const dateset = new Date(element.date).toLocaleString();
+      tableHTML += `<tr> <td>${element.description}</td> <td>${element.duration}</td> <td>${dateset}</td> </tr>`
+    });
+    tabledata.innerHTML = tableHTML
+  }
+  catch(error){
+    console.log("Error:", error)
+  }
+}
+
+myschedule()
+
+
+
+
+
+
+
+

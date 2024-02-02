@@ -4,7 +4,7 @@ const getCaloriesBurned = async (req, res) => {
     try {
         const { rows } = await pool.query(
             `SELECT COALESCE(SUM(et.calories_burn * e.duration), 0) AS total_calories_burned 
-            FROM exercise e JOINexercise_type et ON e.description = et.description WHERE e.username = $1 
+            FROM exercise e JOIN exercise_type et ON e.description = et.description WHERE e.username = $1 
             AND e.date BETWEEN (DATE(NOW() - INTERVAL '7 days')) AND DATE(NOW());`,
             [req.user]
             );

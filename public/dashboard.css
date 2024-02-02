@@ -243,11 +243,6 @@
   align-items: center;
   gap: 20px;
 }
-#upcomingevents {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
-}
 .event-container {
   display: flex;
   flex-direction: column;
