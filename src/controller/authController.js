@@ -30,7 +30,6 @@ const loginUser = async (req, res) => {
         }
         const { rows }= await pool.query(userQuery.getUserByUsername, [ username]);
         const token = jwt.sign({user: username}, '12345')
-        console.log(token)
     
         if (rows.length === 0) {
             res.status(401).json({ error: "Invalid credentials" });

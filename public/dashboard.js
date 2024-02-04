@@ -193,7 +193,7 @@ async function myschedule(){
     const data = await response.json()
     let tableHTML = ''
     data.forEach(element => {
-      const dateset = new Date(element.date).toLocaleString();
+      const dateset = new Date(element.date).toLocaleDateString();
       tableHTML += `<tr> <td>${element.description}</td> <td>${element.duration}</td> <td>${dateset}</td> </tr>`
     });
     tabledata.innerHTML = tableHTML
